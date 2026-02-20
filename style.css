@@ -170,7 +170,6 @@ window#waybar {
 
 #cpu.critical, #memory.critical {
   border-bottom-color: #ff6b6b; /* red */
-  color: #ff6b6b;
 }
 
 #custom-net.net-green { border-bottom: 2px solid #2ecc71; }  /* green */
@@ -198,6 +197,5 @@ window#waybar {
 /* GPU critical (>= 85C) */
 #custom-gpu.critical {
   border-bottom-color: #ff6b6b; /* red */
-  color: #ff6b6b;
 }
 
