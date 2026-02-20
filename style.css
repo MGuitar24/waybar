@@ -1,0 +1,203 @@
+* {
+  border: none;
+  border-radius: 10px;
+  font-family: sans-serif;
+  font-size: 13px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: rgba(240, 240, 245, 0.95);
+  box-shadow: none;
+}
+
+/* =========================================
+   Bubble layout: spacing between modules
+   (makes each module feel like its own pill)
+   ========================================= */
+.modules-left  > widget > * { margin-right: 10px; }
+.modules-center> widget > * { margin: 0 10px; }
+.modules-right > widget > * { margin-left: 10px; }
+
+/* =========================================
+   Left + Center bubbles
+   Give workspaces/window/clock the same "pill" feel
+   ========================================= */
+#workspaces,
+#window,
+#clock,
+#custom-updates {
+  background: rgba(42, 42, 42, 0.9);
+  color: #d8d8d8;
+
+  padding: 0 10px;
+  margin: 2px 0;
+
+  border-radius: 8px;
+}
+
+/* Workspaces buttons stay mostly your style, but fit better in a pill */
+#workspaces {
+  padding: 0 8px;
+}
+
+#workspaces button {
+  padding: 0 8px;
+  margin: 4px 2px;
+  background: transparent;
+  color: rgba(240, 240, 245, 0.75);
+  border-radius: 10px;
+}
+
+#workspaces button.active {
+  color: rgba(240, 240, 245, 0.98);
+}
+
+#workspaces button.urgent {
+  color: rgba(255, 200, 200, 0.98);
+}
+
+/* Window title + clock keep your sizing intent */
+#window {
+  padding: 0 10px;
+  margin: 2px 0;
+  color: rgba(240, 240, 245, 0.90);
+}
+
+#clock {
+  padding: 0 12px;
+  margin: 2px 0;
+}
+
+/* =========================================
+   Right-side module bubbles (your original)
+   ========================================= */
+#custom-gpu,
+#custom-net_addr,
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#network,
+#tray {
+  background: rgba(42, 42, 42, 0.9);
+  color: #d8d8d8;
+
+  padding: 0 10px;
+  margin: 4px 4px;
+
+  border-radius: 8px;
+}
+
+/* =========================
+   Subtle teal accents
+   ========================= */
+
+/* Network: neutral */
+#network {
+  border-bottom: 2px solid #2aa198;
+}
+
+/* CPU: neutral */
+#cpu {
+  border-bottom: 2px solid #6c6c6c;
+}
+
+/* Memory: neutral */
+#memory {
+  border-bottom: 2px solid #6c6c6c;
+}
+
+/* Temperature: neutral unless hot */
+#temperature {
+  border-bottom: 2px solid #6c6c6c;
+}
+
+#temperature.critical {
+  color: #ff6b6b;
+  border-bottom-color: #ff6b6b;
+}
+
+/* Audio: subtle accent */
+#pulseaudio {
+  border-bottom: 2px solid #4db6ac;
+}
+
+#pulseaudio.muted {
+  color: #777;
+  border-bottom-color: #555;
+}
+
+/* =========================
+   Hover behavior (very subtle)
+   ========================= */
+
+#network:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#pulseaudio:hover,
+#custom-updates:hover,
+#tray:hover {
+  background: rgba(55, 55, 55, 0.95);
+}
+
+/* Tray tweaks (your original) */
+#tray {
+  padding-right: 12px;
+}
+
+/* Updates module (now a real bubble; keep your hover) */
+#custom-updates {
+  padding: 0 10px;
+  margin: 2px 0;
+  border-radius: 8px;
+}
+#custom-updates:hover { opacity: 0.85; }
+
+#cpu.low, #memory.low, #pulseaudio.low {
+  border-bottom-color: #2ecc71;
+}
+
+#cpu.warning, #memory.warning, #pulseaudio.warning {
+  border-bottom-color: #f1c40f; /* yellow */
+}
+
+#pulseaudio.critical {
+ border-bottom-color: #ff6b6b;
+}
+
+#cpu.critical, #memory.critical {
+  border-bottom-color: #ff6b6b; /* red */
+  color: #ff6b6b;
+}
+
+#custom-net.net-green { border-bottom: 2px solid #2ecc71; }  /* green */
+#custom-net.net-yellow { border-bottom: 2px solid #f1c40f; } /* yellow */
+#custom-net.net-red { border-bottom: 2px solid #ff6b6b; color: #ff6b6b; } /* red */
+
+#custom-net {
+  min-width: 140px;
+}
+
+/* =========================
+   GPU: neutral unless hot
+   (script sets class to: gpu | warning | critical)
+   ========================= */
+
+#custom-gpu {
+  border-bottom: 2px solid #6c6c6c; /* neutral */
+}
+
+/* GPU warning (>= 75C) */
+#custom-gpu.warning {
+  border-bottom-color: #f1c40f; /* yellow */
+}
+
+/* GPU critical (>= 85C) */
+#custom-gpu.critical {
+  border-bottom-color: #ff6b6b; /* red */
+  color: #ff6b6b;
+}
+
