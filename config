@@ -26,7 +26,8 @@
     "cpu",
     "memory",
     "temperature",
-    "pulseaudio",
+    //"pulseaudio",
+    "wireplumber",
     "tray"
   ],
 
@@ -119,6 +120,19 @@
   },
 
   "pulseaudio": {
+    "format": "VOL {volume}%",
+    "format-muted": "MUTED",
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "tooltip": true,
+    "states": {
+      "low": 20,
+      "warning": 80,
+      "critical": 95
+    }
+  },
+
+  "wireplumber": {
     "format": "VOL {volume}%",
     "format-muted": "MUTED",
     "scroll-step": 5,
