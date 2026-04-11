@@ -28,7 +28,7 @@ window#waybar {
 #window,
 #clock,
 #custom-updates {
-  background: rgba(42, 42, 42, 0.9);
+  background: rgba(42, 42, 42, 0.15);
   color: #d8d8d8;
 
   padding: 0 10px;
@@ -79,9 +79,10 @@ window#waybar {
 #memory,
 #temperature,
 #pulseaudio,
+#wireplumber,
 #network,
 #tray {
-  background: rgba(42, 42, 42, 0.9);
+  background: rgba(42, 42, 42, 0.1);
   color: #d8d8d8;
 
   padding: 0 10px;
@@ -124,11 +125,19 @@ window#waybar {
   border-bottom: 2px solid #4db6ac;
 }
 
+#wireplumber {
+  border-bottom: 2px solid #4db6ac;
+}
+
 #pulseaudio.muted {
   color: #777;
   border-bottom-color: #555;
 }
 
+#wireplumber.muted {
+  color: #777;
+  border-bottom-color: #555;
+}
 /* =========================
    Hover behavior (very subtle)
    ========================= */
@@ -138,6 +147,7 @@ window#waybar {
 #memory:hover,
 #temperature:hover,
 #pulseaudio:hover,
+#wireplumber:hover,
 #custom-updates:hover,
 #tray:hover {
   background: rgba(55, 55, 55, 0.95);
@@ -156,15 +166,15 @@ window#waybar {
 }
 #custom-updates:hover { opacity: 0.85; }
 
-#cpu.low, #memory.low, #pulseaudio.low {
+#cpu.low, #memory.low, #pulseaudio.low, #wireplumber.low {
   border-bottom-color: #2ecc71;
 }
 
-#cpu.warning, #memory.warning, #pulseaudio.warning {
+#cpu.warning, #memory.warning, #pulseaudio.warning, #wireplumber.warning {
   border-bottom-color: #f1c40f; /* yellow */
 }
 
-#pulseaudio.critical {
+#pulseaudio.critical, #wireplumber.critical {
  border-bottom-color: #ff6b6b;
 }
 
