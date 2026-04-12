@@ -82,13 +82,17 @@ window#waybar {
 #wireplumber,
 #network,
 #tray {
-  background: rgba(42, 42, 42, 0.1);
+  background: rgba(42, 42, 42, 0.25);
   color: #d8d8d8;
 
   padding: 0 10px;
   margin: 4px 4px;
 
   border-radius: 8px;
+}
+
+#custom-net_addr {
+  border-bottom: 2px solid #6c6c6c;
 }
 
 /* =========================
