@@ -19,6 +19,7 @@
     "clock"
   ],
   "modules-right": [
+    "custom/dualsense",
     "custom/net",
     "custom/net_addr",
     //"network",
@@ -35,6 +36,13 @@
     "format": "󰚰",
     "tooltip": "Updates",
     "on-click": "gtk-launch arch-update"
+  },
+
+  "custom/dualsense": {
+    "exec": "dualsensectl battery 2>/dev/null | awk '{print $1\"%\", $2}'",
+    "interval": 30,
+    "format": "🎮 {}",
+    "tooltip": false
   },
 
   "custom/net": {
