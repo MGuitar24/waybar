@@ -80,11 +80,17 @@ DOWN_LVL="$(rate_level "$DOWN_BPS")"
 UP_COLOR="$(level_color "$UP_LVL")"
 DOWN_COLOR="$(level_color "$DOWN_LVL")"
 
-# Keep a single module class if you still want it (based on DOWN), but the underline is split.
-CLASS="net-${DOWN_LVL}"
+# Pango markup: color the full span (arrow + value) per direction
+TEXT="<span color='${UP_COLOR}'>↑ ${UP_TXT}</span>  <span color='${DOWN_COLOR}'>↓ ${DOWN_TXT}</span>"
 
-# Pango markup: separate underlines/colors for ↑ and ↓ segments
-TEXT="↑<span underline='single' underline_color='${UP_COLOR}'>${UP_TXT}</span> ↓<span underline='single' underline_color='${DOWN_COLOR}'>${DOWN_TXT}</span>"
+# Overall class = max severity of up/down so the border reflects the worst direction
+level_rank() { case "$1" in red) echo 2;; yellow) echo 1;; *) echo 0;; esac; }
+if (( $(level_rank "$UP_LVL") >= $(level_rank "$DOWN_LVL") )); then
+  MAX_LVL="$UP_LVL"
+else
+  MAX_LVL="$DOWN_LVL"
+fi
+CLASS="net-${MAX_LVL}"
 TOOLTIP="Interface: ${IFACE}\nDown: ${DOWN_TXT}\nUp: ${UP_TXT}\n(Computed over ${DT_S}s)"
 
 # JSON escape quotes
