@@ -69,6 +69,13 @@ window#waybar {
   color: rgba(240, 240, 245, 0.90);
 }
 
+window#waybar.empty #window {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+
 #clock {
   padding: 0 12px;
   margin: 2px 0;
@@ -78,6 +85,7 @@ window#waybar {
    Right-side module bubbles (your original)
    ========================================= */
 #custom-gpu,
+#custom-net,
 #custom-net_addr,
 #cpu,
 #memory,
@@ -190,14 +198,15 @@ window#waybar {
   border-bottom-color: #ff6b6b; /* red */
 }
 
-#custom-net.net-green { border-bottom: 2px solid #2ecc71; }  /* green */
-#custom-net.net-yellow { border-bottom: 2px solid #f1c40f; } /* yellow */
-#custom-net.net-red { border-bottom: 2px solid #ff6b6b; color: #ff6b6b; } /* red */
+#custom-net.net-green  { border-bottom: 2px solid #2ecc71; }
+#custom-net.net-yellow { border-bottom: 2px solid #f1c40f; }
+#custom-net.net-red    { border-bottom: 2px solid #ff6b6b; }
 
 #custom-net {
-  background: rgba(42, 42, 42, 0.35);
   min-width: 140px;
 }
+
+#custom-net:hover { background: rgba(55, 55, 55, 0.95); }
 
 /* =========================
    GPU: neutral unless hot
