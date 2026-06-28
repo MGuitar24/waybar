@@ -87,9 +87,6 @@ window#waybar.empty #window {
 #custom-gpu,
 #custom-net,
 #custom-net_addr,
-#cpu,
-#memory,
-#temperature,
 #pulseaudio,
 #wireplumber,
 #network,
@@ -102,6 +99,35 @@ window#waybar.empty #window {
 
   border-radius: 8px;
 }
+
+/* =========================================
+   CPU + Temp + Memory: one merged pill (GPU-pill style)
+   ========================================= */
+#cpu,
+#temperature,
+#memory {
+  background: rgba(42, 42, 42, 0.35);
+  color: #d8d8d8;
+  padding: 0 5px;       /* tight inner spacing between segments */
+  margin: 4px 0;        /* no horizontal margin between segments */
+  border-radius: 0;     /* square inner edges; outer corners set below */
+}
+
+/* cancel the config "spacing": 10 box-gap so the segments touch */
+#temperature,
+#memory {
+  margin-left: -10px;
+}
+
+/* round only the outer corners, keep normal padding on the pill's outer edges */
+#cpu    { border-radius: 8px 0 0 8px; padding-left: 10px; }
+#memory { border-radius: 0 8px 8px 0; padding-right: 10px; }
+
+/* reserve stable width so segments don't collapse (and gap) before first poll
+   or at narrow values — keeps the -10px overlap consistent from first frame */
+#cpu         { min-width: 64px; }
+#temperature { min-width: 44px; }
+#memory      { min-width: 64px; }
 
 #custom-net_addr {
   border-bottom: 2px solid #6c6c6c;
