@@ -12,8 +12,8 @@
 
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/window",
-    "custom/updates"
+    "hyprland/window"//,
+    //"custom/updates"
   ],
   "modules-center": [
     "clock"
@@ -25,8 +25,8 @@
     //"network",
     "custom/gpu",
     "cpu",
-    "memory",
     "temperature",
+    "memory",
     //"pulseaudio",
     "wireplumber",
     "tray"
@@ -68,9 +68,11 @@
       "default": "○",
       "urgent": "◉"
     },
+    "on-click": "activate",
     "persistent-workspaces": {
       "*": 5
-    }
+    },
+    "sort-by-number": true
   },
 
   "hyprland/window": {
@@ -120,7 +122,7 @@
 
   "temperature": {
     "interval": 1,
-    "format": "TEMP {temperatureC}°C",
+    "format": "{temperatureC}°C",
     "critical-threshold": 85,
     "tooltip": true,
     // If temp doesn't show, you may need to set:
