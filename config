@@ -27,8 +27,8 @@
     "cpu",
     "temperature",
     "memory",
-    //"pulseaudio",
-    "wireplumber",
+    "pulseaudio",
+    //"wireplumber",
     "tray"
   ],
 
@@ -136,9 +136,10 @@
     "on-click": "pavucontrol",
     "tooltip": true,
     "states": {
-      "low": 20,
-      "warning": 80,
-      "critical": 95
+      "quiet": 38,
+      "low": 79,
+      "warning": 89,
+      "critical": 150
     }
   },
 
