@@ -108,7 +108,7 @@ window#waybar.empty #window {
 #memory {
   background: rgba(42, 42, 42, 0.35);
   color: #d8d8d8;
-  padding: 0 5px;       /* tight inner spacing between segments */
+  padding: 0 2px;       /* tight inner spacing between segments */
   margin: 4px 0;        /* no horizontal margin between segments */
   border-radius: 0;     /* square inner edges; outer corners set below */
 }
@@ -210,6 +210,10 @@ window#waybar.empty #window {
 
 #cpu.low, #memory.low, #pulseaudio.low, #wireplumber.low {
   border-bottom-color: #2ecc71;
+}
+
+#pulseaudio.quiet {
+  border-bottom-color: #6c6c6c;
 }
 
 #cpu.warning, #memory.warning, #pulseaudio.warning, #wireplumber.warning {
