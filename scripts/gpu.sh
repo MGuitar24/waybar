@@ -57,7 +57,14 @@ elif [[ "$vram_pct" -ge "$VRAM_WARN" ]]; then
   fi
 fi
 
-text="GPU ${util}% ${temp}C VRAM ${vram_pct}%"
-tooltip="GPU Util: ${util}%\nTemp: ${temp} C\nPower: ${pwr} W\nVRAM: ${mem_used} / ${mem_total} MiB (${vram_pct}%)\nClass: ${class}"
+# Right-align the % fields in a fixed 3-char width so the pill doesn't
+# resize as util/vram swing between 1, 2 and 3 digits (reserved space on
+# the left, matching the CPU pill). %3s is used (not %3d) so a stray
+# non-numeric value like "N/A" can't break the script.
+util_f=$(printf '%3s' "$util")
+vram_f=$(printf '%3s' "$vram_pct")
+
+text="GPU ${util_f}% ${temp}°C VRAM ${vram_f}%"
+tooltip="GPU Util: ${util}%\nTemp: ${temp}°C\nPower: ${pwr} W\nVRAM: ${mem_used} / ${mem_total} MiB (${vram_pct}%)\nClass: ${class}"
 
 echo "{\"text\":\"${text}\",\"tooltip\":\"${tooltip}\",\"class\":\"${class}\",\"icon\":\"gpu\"}"
