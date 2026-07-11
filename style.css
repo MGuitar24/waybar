@@ -101,33 +101,35 @@ window#waybar.empty #window {
 }
 
 /* =========================================
-   CPU + Temp + Memory: one merged pill (GPU-pill style)
+   CPU + Temp + Memory: one merged pill
+
+   The three modules live in a Waybar "group/stats" whose inner box has
+   spacing 0, so the segments touch with no gap and NO negative margins.
+   The group container carries the single pill background + rounded corners;
+   the segments are transparent and separated only by padding.
    ========================================= */
+#stats {
+  background: rgba(42, 42, 42, 0.35);
+  margin: 4px 4px;      /* match the other right-side pills */
+  border-radius: 8px;   /* match the other pills' corner radius */
+  padding: 0;           /* outer padding lives on the end segments (below) */
+}
+
 #cpu,
 #temperature,
 #memory {
-  background: rgba(42, 42, 42, 0.35);
+  background: transparent;   /* let the group background form one pill */
   color: #d8d8d8;
-  padding: 0 2px;       /* tight inner spacing between segments */
-  margin: 4px 0;        /* no horizontal margin between segments */
-  border-radius: 0;     /* square inner edges; outer corners set below */
+  margin: 0;                 /* touch exactly — no negative margin */
+  padding: 0 3px;            /* single-space-sized gap between segments, like the GPU pill */
+  border-radius: 0;          /* inner segments are square; end corners set below */
+  min-width: 0;              /* natural width — no reserved gaps; resizes like the GPU pill */
 }
 
-/* cancel the config "spacing": 10 box-gap so the segments touch */
-#temperature,
-#memory {
-  margin-left: -10px;
-}
-
-/* round only the outer corners, keep normal padding on the pill's outer edges */
+/* round only the pill's outer corners, so the end segments' border-bottom
+   accent follows the curve (matches the GPU/VOL pills' rounded corners) */
 #cpu    { border-radius: 8px 0 0 8px; padding-left: 10px; }
 #memory { border-radius: 0 8px 8px 0; padding-right: 10px; }
-
-/* reserve stable width so segments don't collapse (and gap) before first poll
-   or at narrow values — keeps the -10px overlap consistent from first frame */
-#cpu         { min-width: 64px; }
-#temperature { min-width: 44px; }
-#memory      { min-width: 64px; }
 
 #custom-net_addr {
   border-bottom: 2px solid #6c6c6c;
