@@ -24,11 +24,9 @@
     "custom/net_addr",
     //"network",
     "custom/gpu",
-    "cpu",
-    "temperature",
-    "memory",
-    "pulseaudio",
-    //"wireplumber",
+    "group/stats",
+    //"pulseaudio",
+    "wireplumber",
     "tray"
   ],
 
@@ -99,8 +97,13 @@
     "tooltip": true
   },
 
+  "group/stats": {
+    "orientation": "horizontal",
+    "modules": ["cpu", "temperature", "memory"]
+  },
+
   "cpu": {
-    "format": "CPU {usage}%",
+    "format": "CPU {usage:>3}%",
     "tooltip": true,
     "states": {
       "low": 20,
