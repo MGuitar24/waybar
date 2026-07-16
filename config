@@ -11,7 +11,7 @@
   // "output": ["DP-1", "DP-2"],
 
   "modules-left": [
-    "hyprland/workspaces",
+    "ext/workspaces",
     "hyprland/window"//,
     //"custom/updates"
   ],
@@ -59,7 +59,7 @@
     "format": "{text}"
   },
 
-  "hyprland/workspaces": {
+  "ext/workspaces": {
     "format": "{icon}",
     "format-icons": {
       "active": "●",
@@ -67,10 +67,7 @@
       "urgent": "◉"
     },
     "on-click": "activate",
-    "persistent-workspaces": {
-      "*": 5
-    },
-    "sort-by-number": true
+    "sort-by-id": true
   },
 
   "hyprland/window": {
