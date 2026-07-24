@@ -67,7 +67,7 @@
       "urgent": "◉"
     },
     "on-click": "activate",
-    "sort-by-id": true
+    "sort-by-name": true
   },
 
   "hyprland/window": {
