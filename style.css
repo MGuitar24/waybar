@@ -234,10 +234,7 @@ window#waybar.empty #window {
 #custom-net.net-yellow { border-bottom: 2px solid #f1c40f; }
 #custom-net.net-red    { border-bottom: 2px solid #ff6b6b; }
 
-/* Fix the width on the inner GtkLabel (not the outer widget): the label
-   holds a stable size so the pill doesn't resize as the rates change, and a
-   label centers its own text by default — so the readout stays centered. */
-#custom-net label {
+#custom-net {
   min-width: 180px;
 }
 
