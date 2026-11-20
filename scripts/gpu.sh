@@ -18,17 +18,27 @@ VRAM_CRIT=95
 # --------------------
 
 # Query: utilization %, temperature C, power draw W, total memory MiB, used memory MiB
+# nvidia-smi prints errors (e.g. "Failed to initialize NVML: Driver/library
+# version mismatch" after a driver update until reboot) on stdout, so capture
+# its exit status instead of parsing the error text as numbers.
+if ! smi_out=$(nvidia-smi --query-gpu=utilization.gpu,temperature.gpu,power.draw,memory.total,memory.used \
+    --format=csv,noheader,nounits 2>&1); then
+  err=$(head -n1 <<<"$smi_out" | tr -d '"\\')
+  echo "{\"text\":\"GPU n/a\",\"tooltip\":\"nvidia-smi: ${err}\",\"class\":\"warning\",\"icon\":\"gpu\"}"
+  exit 0
+fi
+
 read -r util temp pwr mem_total mem_used < <(
-  nvidia-smi --query-gpu=utilization.gpu,temperature.gpu,power.draw,memory.total,memory.used \
-    --format=csv,noheader,nounits | head -n1 | tr ',' ' ' | awk '{print $1, $2, $3, $4, $5}'
+  head -n1 <<<"$smi_out" | tr ',' ' ' | awk '{print $1, $2, $3, $4, $5}'
 )
 
-# Guard against empty/NA output
-util="${util:-0}"
-temp="${temp:-0}"
+# Guard against empty/non-numeric output ([N/A] etc.)
+num() { [[ "$1" =~ ^[0-9]+$ ]] && echo "$1" || echo 0; }
+util=$(num "${util:-}")
+temp=$(num "${temp%%.*}")
 pwr="${pwr:-0}"
-mem_total="${mem_total:-0}"
-mem_used="${mem_used:-0}"
+mem_total=$(num "${mem_total:-}")
+mem_used=$(num "${mem_used:-}")
 
 # VRAM percent (integer). Avoid division by zero.
 vram_pct=0
